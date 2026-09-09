@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillMatch AI - Resume Screener &amp; Job Matcher</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Google Fonts: display face (Space Grotesk) + body face (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============== NAVBAR ============== -->
+  <nav class="navbar">
+    <div class="logo">Skill<span>Match</span> AI</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="signup.html" class="btn btn-primary">Get started</a>
+    </div>
+  </nav>
+
+  <!-- ============== HERO (Three.js network animation behind the text) ============== -->
+  <section class="hero">
+    <canvas id="three-canvas"></canvas>
+    <div class="hero-content">
+      <span class="eyebrow">AI-Powered Resume Screener</span>
+      <h1>Match resumes to jobs with <span class="accent">real NLP</span>, not guesswork.</h1>
+      <p>
+        SkillMatch AI scores how well a candidate's resume fits a job description in
+        seconds — highlighting matched skills, missing skills, and a clear match
+        percentage, powered by a Django + FastAPI microservice architecture.
+      </p>
+      <div class="hero-actions">
+        <a href="signup.html" class="btn btn-primary">Create free account</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FEATURES ============== -->
+  <section class="section container" id="features">
+    <h2 class="section-title">Built like a real production system</h2>
+    <p class="section-sub">Every piece here mirrors a real hiring-tech stack, end to end.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>JWT Authentication</h3>
+        <p>Secure signup/login with hashed passwords and short-lived access + refresh tokens.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>AI Matching Engine</h3>
+        <p>A FastAPI microservice scores resumes against job descriptions using TF-IDF + cosine similarity NLP.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🗃️</div>
+        <h3>Full CRUD REST API</h3>
+        <p>Django REST Framework ViewSets manage jobs, resumes, and match history backed by PostgreSQL.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Role-based Authorization</h3>
+        <p>Recruiters post jobs, candidates submit resumes — permissions are enforced at the object level.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🐳</div>
+        <h3>Dockerized Everything</h3>
+        <p>One <code>docker compose up</code> spins up Postgres, Django, FastAPI, and the frontend together.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Instant Feedback</h3>
+        <p>Get a match score, matched skills, and skill gaps the moment you submit a resume.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HOW IT WORKS ============== -->
+  <section class="section container" id="how">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Three steps from resume to result.</p>
+    <div class="grid-3">
+      <div class="card"><h3>1. Sign up</h3><p>Create an account as a candidate or a recruiter with a secure JWT-based login.</p></div>
+      <div class="card"><h3>2. Add your resume</h3><p>Paste your resume text and browse open job postings from recruiters.</p></div>
+      <div class="card"><h3>3. Get matched</h3><p>Click "check my match" — the AI service returns a score and the exact skill gaps to fix.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">Built with Django · FastAPI · PostgreSQL · Three.js — a portfolio project.</div>
+  </footer>
+
+  <!-- type="module" is required because three-bg.js uses ES module imports -->
+  <script type="module" src="js/three-bg.js"></script>
+</body>
+</html>

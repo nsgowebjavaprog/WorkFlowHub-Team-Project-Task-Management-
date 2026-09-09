@@ -1,0 +1,300 @@
+/* ==========================================================================
+   style.css
+   ---------
+   Design tokens for the whole site.
+   THEME: "signal network" - dark, technical, built around the idea of a
+   resume "connecting" to a job (nodes + lines), which is also what the
+   Three.js hero animates.
+   ========================================================================== */
+
+:root {
+  /* --- Color tokens --- */
+  --bg: #090c14;              /* near-black navy background */
+  --bg-elevated: #10141f;     /* cards / panels sit one step lighter */
+  --border: #1f2635;
+  --text: #e8ecf4;
+  --text-dim: #8892a6;
+  --accent: #7c5cff;          /* electric violet - primary accent */
+  --accent-2: #3ddbd9;        /* cyan - secondary accent, used for "matched" */
+  --warn: #ffb86b;            /* amber - used for medium scores */
+  --danger: #ff6b81;          /* used for low scores / errors */
+  --success: #4ade80;
+
+  /* --- Typography tokens --- */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* --- Layout tokens --- */
+  --radius: 14px;
+  --max-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, .logo {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  background: rgba(9, 12, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo { font-size: 1.25rem; font-weight: 700; }
+.logo span { color: var(--accent-2); }
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: var(--text-dim); font-size: 0.95rem; transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #5a3fe0);
+  color: #fff;
+  box-shadow: 0 8px 24px -8px rgba(124, 92, 255, 0.6);
+}
+.btn-primary:hover { box-shadow: 0 10px 30px -6px rgba(124, 92, 255, 0.8); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-ghost:hover { border-color: var(--accent-2); }
+
+.btn-block { width: 100%; }
+
+/* --- Hero (Three.js canvas sits behind this content) --- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#three-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  border: 1px solid rgba(61, 219, 217, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.05;
+  margin: 0 0 20px;
+}
+.hero h1 .accent { color: var(--accent-2); }
+
+.hero p {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* --- Feature grid --- */
+.section { padding: 90px 0; }
+.section-title { font-size: 2rem; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); margin-bottom: 48px; max-width: 560px; }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color .2s, transform .2s;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+.card .icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(124, 92, 255, 0.15);
+  color: var(--accent-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+.card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.card p { color: var(--text-dim); font-size: 0.92rem; line-height: 1.55; margin: 0; }
+
+/* --- Auth forms (login/signup) --- */
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+}
+
+.auth-card h2 { margin: 0 0 6px; }
+.auth-card .sub { color: var(--text-dim); margin-bottom: 28px; font-size: 0.92rem; }
+
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0d1119;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--accent-2);
+}
+
+.form-msg {
+  font-size: 0.86rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: none;
+}
+.form-msg.error { display: block; background: rgba(255, 107, 129, 0.12); color: var(--danger); }
+.form-msg.success { display: block; background: rgba(74, 222, 128, 0.12); color: var(--success); }
+
+.switch-link { text-align: center; margin-top: 22px; font-size: 0.9rem; color: var(--text-dim); }
+.switch-link a { color: var(--accent-2); font-weight: 600; }
+
+/* --- Dashboard --- */
+.dash-shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 240px;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border);
+  padding: 24px 18px;
+  flex-shrink: 0;
+}
+.sidebar .logo { display: block; margin-bottom: 32px; padding-left: 8px; }
+.sidebar-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 12px; border-radius: 10px;
+  color: var(--text-dim); font-size: 0.92rem; margin-bottom: 4px; cursor: pointer;
+}
+.sidebar-link.active, .sidebar-link:hover { background: rgba(124,92,255,0.12); color: var(--text); }
+
+.dash-main { flex: 1; padding: 32px 40px; overflow-y: auto; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+.dash-header h1 { font-size: 1.6rem; margin: 0; }
+.pill { font-size: 0.78rem; padding: 5px 12px; border-radius: 999px; background: rgba(61,219,217,0.14); color: var(--accent-2); }
+
+.job-item, .resume-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.job-item h4, .resume-item h4 { margin: 0 0 4px; font-size: 1rem; }
+.job-item p, .resume-item p { margin: 0; color: var(--text-dim); font-size: 0.85rem; }
+
+.score-badge {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+.score-high { background: rgba(74,222,128,0.15); color: var(--success); }
+.score-mid { background: rgba(255,184,107,0.15); color: var(--warn); }
+.score-low { background: rgba(255,107,129,0.15); color: var(--danger); }
+
+.empty-state { color: var(--text-dim); text-align: center; padding: 60px 0; }
+
+footer { border-top: 1px solid var(--border); padding: 30px 0; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+
+@media (max-width: 800px) {
+  .sidebar { display: none; }
+  .dash-main { padding: 24px; }
+}

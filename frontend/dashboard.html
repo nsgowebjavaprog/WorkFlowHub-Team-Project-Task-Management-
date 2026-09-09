@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - SkillMatch AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="dash-shell">
+
+    <!-- ============== SIDEBAR ============== -->
+    <aside class="sidebar">
+      <div class="logo">Skill<span style="color:var(--accent-2)">Match</span></div>
+      <div class="sidebar-link active">📋 Jobs &amp; Matches</div>
+      <div class="sidebar-link" onclick="logout()">🚪 Log out</div>
+    </aside>
+
+    <!-- ============== MAIN CONTENT ============== -->
+    <main class="dash-main">
+      <div class="dash-header">
+        <div>
+          <h1>Welcome, <span id="welcome-name"></span></h1>
+        </div>
+        <span class="pill" id="role-pill"></span>
+      </div>
+
+      <!-- RECRUITER-ONLY: post a job (hidden for candidates via dashboard.js) -->
+      <section class="section" id="recruiter-panel" style="display:none; padding-top:0;">
+        <h2 class="section-title" style="font-size:1.3rem;">Post a job</h2>
+        <form id="job-form" class="card" style="max-width:560px;">
+          <div class="field"><label>Title</label><input name="title" required /></div>
+          <div class="field"><label>Company</label><input name="company" required /></div>
+          <div class="field"><label>Location</label><input name="location" placeholder="Remote" /></div>
+          <div class="field"><label>Required skills (comma-separated)</label><input name="required_skills" placeholder="python, django, sql" required /></div>
+          <div class="field"><label>Description</label><textarea name="description" rows="4" required></textarea></div>
+          <button type="submit" class="btn btn-primary">Post job</button>
+        </form>
+      </section>
+
+      <!-- CANDIDATE-ONLY: add a resume -->
+      <section class="section" id="candidate-panel" style="display:none; padding-top:0;">
+        <h2 class="section-title" style="font-size:1.3rem;">Add a resume</h2>
+        <form id="resume-form" class="card" style="max-width:560px;">
+          <div class="field"><label>Resume title</label><input name="title" placeholder="Backend Developer Resume" required /></div>
+          <div class="field"><label>Paste resume text</label><textarea name="raw_text" rows="6" required></textarea></div>
+          <button type="submit" class="btn btn-primary">Save resume</button>
+        </form>
+
+        <h2 class="section-title" style="font-size:1.3rem; margin-top:36px;">Check a match</h2>
+        <div class="field" style="max-width:400px;">
+          <label>Choose which saved resume to use</label>
+          <select id="resume-select"></select>
+        </div>
+        <div id="match-results"></div>
+      </section>
+
+      <!-- JOB LISTING (visible to everyone) -->
+      <section class="section" style="padding-top:0;">
+        <h2 class="section-title" style="font-size:1.3rem;">Open jobs</h2>
+        <div id="jobs-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
